@@ -1,0 +1,54 @@
+use batch1819_4821
+select * from Emp
+alter table Emp add country int, state int
+sp_helptext usp_emp_update
+
+alter proc usp_emp_update
+@empid int,
+@name varchar(50),
+@address varchar(50),
+@age int,
+@country int,
+@state int
+as
+begin
+update Emp set Name=@name,Address=@address,
+Age=@age,country=@country,state=@state where EmpID=@empid
+end
+
+alter proc usp_emp_insert
+@name varchar(50), 
+@address varchar(50),
+@age int,
+@country int,
+@state int
+as
+begin
+insert into Emp(name,address,age,country,state)
+values(@name,@address,@age,@country,@state)
+end
+
+
+
+
+
+create table tblcountry
+(
+cid int primary key identity,
+cname varchar(50)
+)
+insert into tblcountry values('India'),('Pakistan')
+
+create table tblstate
+(
+sid int primary key identity,
+cid int,
+sname varchar(50)
+)
+insert into tblstate(cid,sname)values(1,'UP')
+insert into tblstate(cid,sname)values(1,'Bihar')
+insert into tblstate(cid,sname)values(1,'New Delhi')
+insert into tblstate(cid,sname)values(1,'Kerla')
+insert into tblstate(cid,sname)values(2,'Sindh')
+insert into tblstate(cid,sname)values(2,'Khayber')
+insert into tblstate(cid,sname)values(2,'Gilgit')
